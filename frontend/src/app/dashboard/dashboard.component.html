@@ -1,0 +1,71 @@
+<div class="hero animate-fade">
+  <h2>📚 Tableau de bord</h2>
+  <p>Ta prochaine pépite de lecture, choisie pour toi.</p>
+</div>
+
+<div class="flex-wrap-gap" style="margin-bottom: 28px;">
+  <span
+    class="chip"
+    [class.active]="focusCategory === null"
+    (click)="setFocus(null)"
+  >
+    <i class="bi bi-shuffle"></i> Aucun focus
+  </span>
+  <span
+    *ngFor="let c of categories"
+    class="chip"
+    [ngClass]="categoryTheme[c].chipClass"
+    [class.active]="focusCategory === c"
+    (click)="setFocus(c)"
+  >
+    <i class="bi" [ngClass]="categoryTheme[c].icon"></i> {{ categoryLabels[c] }}
+  </span>
+</div>
+
+<div class="stats-grid">
+  <div class="stat-card animate-pop">
+    <div class="stat-icon">📖</div>
+    <div class="stat-value">{{ toLireCount }}</div>
+    <div class="stat-label">à lire</div>
+  </div>
+  <div class="stat-card animate-pop">
+    <div class="stat-icon">🔖</div>
+    <div class="stat-value">{{ enCoursCount }}</div>
+    <div class="stat-label">en cours</div>
+  </div>
+  <div class="stat-card animate-pop">
+    <div class="stat-icon">🎉</div>
+    <div class="stat-value">{{ luCetteAnneeCount }}</div>
+    <div class="stat-label">lus cette année</div>
+  </div>
+</div>
+
+<div
+  class="featured-card animate-pop"
+  *ngIf="recommendation?.next as next"
+  [ngClass]="categoryTheme[next.category].coverClass"
+>
+  <div class="featured-eyebrow">⭐ Prochain livre à lire</div>
+  <i class="bi featured-icon" [ngClass]="categoryTheme[next.category].icon"></i>
+  <h3>{{ next.title }}</h3>
+  <div class="featured-author" *ngIf="next.author">{{ next.author }}</div>
+  <app-star-rating [value]="next.priority" size="1.1rem"></app-star-rating>
+  <button type="button" class="btn featured-cta" (click)="startReading(next)">
+    <i class="bi bi-play-fill"></i> Commencer à lire
+  </button>
+</div>
+
+<div class="empty-state surface animate-fade" *ngIf="recommendation && !recommendation.next">
+  <div class="empty-icon">🌱</div>
+  <p>Aucun livre « à lire » pour le moment.</p>
+  <a routerLink="/books" class="btn btn-primary" style="margin-top: 16px;">
+    <i class="bi bi-plus-lg"></i> Ajouter un livre
+  </a>
+</div>
+
+<div *ngIf="recommendation?.upcoming?.length">
+  <div class="section-title">À suivre</div>
+  <div class="cover-row">
+    <app-book-cover *ngFor="let book of recommendation!.upcoming" [book]="book" [compact]="true"></app-book-cover>
+  </div>
+</div>

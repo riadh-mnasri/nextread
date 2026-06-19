@@ -1,0 +1,9 @@
+<span class="star-rating" [class.editable]="editable" [style.fontSize]="size">
+  <i
+    *ngFor="let star of stars"
+    class="bi"
+    [class.bi-star-fill]="star <= value"
+    [class.bi-star]="star > value"
+    (click)="select(star)"
+  ></i>
+</span>

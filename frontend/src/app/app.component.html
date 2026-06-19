@@ -1,0 +1,17 @@
+<nav class="navbar">
+  <div class="navbar-inner">
+    <a class="brand" routerLink="/"><i class="bi bi-book-half"></i> NextRead</a>
+    <div class="nav-links">
+      <a class="nav-link" routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+        Tableau de bord
+      </a>
+      <a class="nav-link" routerLink="/books" routerLinkActive="active">Bibliothèque</a>
+    </div>
+  </div>
+</nav>
+
+<div class="page">
+  <router-outlet></router-outlet>
+</div>
+
+<app-toast></app-toast>

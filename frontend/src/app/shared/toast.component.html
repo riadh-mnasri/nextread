@@ -1,0 +1,6 @@
+<div class="toast-stack">
+  <div class="toast-item animate-pop" *ngFor="let toast of toastService.toasts()">
+    <i class="bi" [ngClass]="toast.icon"></i>
+    {{ toast.message }}
+  </div>
+</div>

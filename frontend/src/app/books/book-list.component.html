@@ -1,0 +1,60 @@
+<div class="flex-between" style="margin-bottom: 20px;">
+  <h2><i class="bi bi-collection"></i> Ma bibliothèque</h2>
+  <button class="btn btn-primary" (click)="openAddForm()">
+    <i class="bi bi-plus-lg"></i> Ajouter un livre
+  </button>
+</div>
+
+<div class="flex-wrap-gap" style="margin-bottom: 10px;">
+  <span
+    *ngFor="let c of categories"
+    class="chip"
+    [ngClass]="categoryTheme[c].chipClass"
+    [class.active]="categoryFilter === c"
+    (click)="toggleCategoryFilter(c)"
+  >
+    <i class="bi" [ngClass]="categoryTheme[c].icon"></i> {{ categoryLabels[c] }}
+  </span>
+</div>
+
+<div class="flex-wrap-gap" style="margin-bottom: 28px;">
+  <span
+    *ngFor="let s of statuses"
+    class="chip"
+    [class.active]="statusFilter === s"
+    (click)="toggleStatusFilter(s)"
+  >
+    {{ statusLabels[s] }}
+  </span>
+</div>
+
+<div class="cover-grid" *ngIf="books.length > 0">
+  <button type="button" class="add-cover" (click)="openAddForm()">
+    <i class="bi bi-plus-circle"></i>
+    Ajouter un livre
+  </button>
+  <app-book-cover
+    *ngFor="let book of books"
+    [book]="book"
+    [showActions]="true"
+    [nextStatusLabel]="nextStatusLabel(book)"
+    (advance)="advanceStatus(book)"
+    (edit)="openEditForm(book)"
+    (remove)="remove(book)"
+  ></app-book-cover>
+</div>
+
+<div class="empty-state surface animate-fade" *ngIf="books.length === 0">
+  <div class="empty-icon">🌱</div>
+  <p>Aucun livre pour ces filtres.</p>
+  <button type="button" class="btn btn-primary" style="margin-top: 16px;" (click)="openAddForm()">
+    <i class="bi bi-plus-lg"></i> Ajouter ton premier livre
+  </button>
+</div>
+
+<app-book-form
+  *ngIf="showForm"
+  [book]="editingBook"
+  (saved)="onSaved($event)"
+  (cancelled)="onCancelled()"
+></app-book-form>

@@ -1,0 +1,55 @@
+<div class="modal-overlay animate-fade" (click)="cancel()">
+  <div class="modal-card animate-pop" (click)="$event.stopPropagation()">
+    <h3>
+      <i class="bi" [ngClass]="book ? 'bi-pencil-square' : 'bi-journal-plus'"></i>
+      {{ book ? 'Modifier le livre' : 'Ajouter un livre' }}
+    </h3>
+
+    <form (ngSubmit)="submit()" id="book-form">
+      <div class="field">
+        <label>Titre *</label>
+        <input type="text" name="title" [(ngModel)]="draft.title" required autofocus />
+      </div>
+
+      <div class="field">
+        <label>Auteur</label>
+        <input type="text" name="author" [(ngModel)]="draft.author" />
+      </div>
+
+      <div class="field">
+        <label>Catégorie</label>
+        <div class="flex-wrap-gap">
+          <span
+            *ngFor="let c of categories"
+            class="chip"
+            [ngClass]="categoryTheme[c].chipClass"
+            [class.active]="draft.category === c"
+            (click)="selectCategory(c)"
+          >
+            <i class="bi" [ngClass]="categoryTheme[c].icon"></i> {{ categoryLabels[c] }}
+          </span>
+        </div>
+      </div>
+
+      <div class="field">
+        <label>Priorité</label>
+        <div class="priority-field">
+          <app-star-rating [value]="draft.priority" [editable]="true" size="1.5rem" (valueChange)="setPriority($event)"></app-star-rating>
+          <span>{{ draft.priority }}/5</span>
+        </div>
+      </div>
+
+      <div class="field">
+        <label>Notes</label>
+        <textarea name="notes" rows="2" [(ngModel)]="draft.notes"></textarea>
+      </div>
+    </form>
+
+    <div class="modal-actions">
+      <button type="button" class="btn btn-ghost" (click)="cancel()">Annuler</button>
+      <button type="submit" form="book-form" class="btn btn-primary">
+        <i class="bi bi-check-lg"></i> Enregistrer
+      </button>
+    </div>
+  </div>
+</div>

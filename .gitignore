@@ -1,0 +1,15 @@
+# Backend (Maven / Spring Boot)
+backend/target/
+*.class
+
+# H2 database files (données locales, ne doivent pas être versionnées)
+*.mv.db
+*.trace.db
+
+# macOS
+.DS_Store
+
+# IDEs
+.idea/
+*.iml
+.vscode/
