@@ -49,4 +49,6 @@ public class Book {
     @Min(1)
     @Max(5)
     private Integer rating;
+
+    private String coverUrl;
 }

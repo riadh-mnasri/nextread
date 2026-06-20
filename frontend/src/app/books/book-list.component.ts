@@ -102,4 +102,11 @@ export class BookListComponent implements OnInit {
     const next = STATUS_ORDER[currentIndex + 1];
     return next ? this.statusLabels[next] : null;
   }
+
+  refreshCover(book: Book): void {
+    if (!book.id) {
+      return;
+    }
+    this.bookService.refreshCover(book.id).subscribe(() => this.reload());
+  }
 }

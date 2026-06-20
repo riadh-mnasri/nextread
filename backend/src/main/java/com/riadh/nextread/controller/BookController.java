@@ -58,6 +58,11 @@ public class BookController {
         return bookService.updateStatus(id, request.status());
     }
 
+    @PatchMapping("/{id}/refresh-cover")
+    public Book refreshCover(@PathVariable Long id) {
+        return bookService.refreshCover(id);
+    }
+
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void delete(@PathVariable Long id) {

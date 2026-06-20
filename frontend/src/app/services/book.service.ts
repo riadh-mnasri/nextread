@@ -32,4 +32,8 @@ export class BookService {
   delete(id: number): Observable<void> {
     return this.http.delete<void>(`${this.baseUrl}/${id}`);
   }
+
+  refreshCover(id: number): Observable<Book> {
+    return this.http.patch<Book>(`${this.baseUrl}/${id}/refresh-cover`, {});
+  }
 }

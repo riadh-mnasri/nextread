@@ -15,9 +15,11 @@ import java.util.List;
 public class BookService {
 
     private final BookRepository bookRepository;
+    private final CoverService coverService;
 
-    public BookService(BookRepository bookRepository) {
+    public BookService(BookRepository bookRepository, CoverService coverService) {
         this.bookRepository = bookRepository;
+        this.coverService = coverService;
     }
 
     public List<Book> findAll(Category category, Status status) {
@@ -40,6 +42,7 @@ public class BookService {
 
     public Book create(Book book) {
         book.setId(null);
+        coverService.findCoverUrl(book.getTitle(), book.getAuthor()).ifPresent(book::setCoverUrl);
         return bookRepository.save(book);
     }
 
@@ -52,6 +55,12 @@ public class BookService {
         existing.setNotes(update.getNotes());
         existing.setRating(update.getRating());
         return bookRepository.save(existing);
+    }
+
+    public Book refreshCover(Long id) {
+        Book book = findById(id);
+        coverService.findCoverUrl(book.getTitle(), book.getAuthor()).ifPresent(book::setCoverUrl);
+        return bookRepository.save(book);
     }
 
     public Book updateStatus(Long id, Status status) {

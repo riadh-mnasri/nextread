@@ -17,6 +17,7 @@ export class BookCoverComponent {
   @Output() advance = new EventEmitter<void>();
   @Output() edit = new EventEmitter<void>();
   @Output() remove = new EventEmitter<void>();
+  @Output() refreshCover = new EventEmitter<void>();
 
   readonly categoryLabels = CATEGORY_LABELS;
   readonly statusLabels = STATUS_LABELS;

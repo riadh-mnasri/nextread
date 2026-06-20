@@ -1,13 +1,19 @@
-<div class="book-cover animate-pop" [ngClass]="[categoryTheme[book.category].coverClass, compact ? 'compact' : '']">
-  <div>
-    <i class="bi cover-icon" [ngClass]="categoryTheme[book.category].icon"></i>
-    <div class="cover-title">{{ book.title }}</div>
-    <div class="cover-author" *ngIf="book.author">{{ book.author }}</div>
-  </div>
+<div class="book-cover animate-pop" [ngClass]="[!book.coverUrl ? categoryTheme[book.category].coverClass : '', compact ? 'compact' : '']">
+  <img *ngIf="book.coverUrl" class="cover-photo" [src]="book.coverUrl" [alt]="book.title" loading="lazy" />
+  <div *ngIf="book.coverUrl" class="cover-scrim"></div>
 
-  <div class="cover-footer">
-    <app-star-rating [value]="book.priority" size="0.75rem"></app-star-rating>
-    <span class="status-pill">{{ statusLabels[book.status] }}</span>
+  <div class="cover-content">
+    <div *ngIf="!book.coverUrl">
+      <i class="bi cover-icon" [ngClass]="categoryTheme[book.category].icon"></i>
+      <div class="cover-title">{{ book.title }}</div>
+      <div class="cover-author" *ngIf="book.author">{{ book.author }}</div>
+    </div>
+    <div *ngIf="book.coverUrl"></div>
+
+    <div class="cover-footer">
+      <app-star-rating [value]="book.priority" size="0.75rem"></app-star-rating>
+      <span class="status-pill">{{ statusLabels[book.status] }}</span>
+    </div>
   </div>
 
   <div class="cover-actions" *ngIf="showActions">
@@ -22,6 +28,9 @@
     </button>
     <button type="button" class="btn-icon" title="Modifier" (click)="edit.emit()">
       <i class="bi bi-pencil"></i>
+    </button>
+    <button type="button" class="btn-icon" title="Rafraîchir la couverture" (click)="refreshCover.emit()">
+      <i class="bi bi-arrow-repeat"></i>
     </button>
     <button type="button" class="btn-icon danger" title="Supprimer" (click)="remove.emit()">
       <i class="bi bi-trash"></i>

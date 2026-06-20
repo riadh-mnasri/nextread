@@ -13,6 +13,7 @@ export interface Book {
   dateFinished?: string | null;
   notes?: string;
   rating?: number | null;
+  coverUrl?: string | null;
 }
 
 export const CATEGORY_LABELS: Record<Category, string> = {
