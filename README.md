@@ -12,13 +12,13 @@ Une application locale, colorée et ludique pour suivre les livres lus / à lire
 
 ## ✨ Fonctionnalités
 
-- **Bibliothèque visuelle** — chaque livre est une couverture colorée par catégorie, organisée en grille
-- **Suivi de statut** — à lire → en cours → lu, en un clic
-- **Focus de lecture** — choisis ta catégorie du moment, l'appli adapte ses recommandations
-- **Prochain livre à lire** — calculé automatiquement (focus + priorité), mis en avant sur le tableau de bord
-- **Priorité en étoiles** — note chaque livre de 1 à 5 ⭐
-- **Petites célébrations** — un toast 🎉 à chaque livre terminé, pour entretenir la motivation
-- **Tableau de bord** — compteurs (à lire / en cours / lus cette année) en un coup d'œil
+- **Bibliothèque visuelle** - chaque livre est une couverture colorée par catégorie, organisée en grille
+- **Suivi de statut** - à lire → en cours → lu, en un clic
+- **Focus de lecture** - choisis ta catégorie du moment, l'appli adapte ses recommandations
+- **Prochain livre à lire** - calculé automatiquement (focus + priorité), mis en avant sur le tableau de bord
+- **Priorité en étoiles** - note chaque livre de 1 à 5 ⭐
+- **Petites célébrations** - un toast 🎉 à chaque livre terminé, pour entretenir la motivation
+- **Tableau de bord** - compteurs (à lire / en cours / lus cette année) en un coup d'œil
 
 ## 🛠️ Stack technique
 
@@ -74,6 +74,6 @@ Les données sont stockées **localement uniquement** dans un fichier H2 (`~/nex
 
 <div align="center">
 
-Projet personnel de Riadh MNASRI — Tech Lead Freelance
+Projet personnel de Riadh MNASRI - Tech Lead Freelance
 
 </div>
