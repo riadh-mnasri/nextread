@@ -1,12 +1,13 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { environment } from '../../environments/environment';
 import { Category } from '../models/book.model';
 import { Settings } from '../models/settings.model';
 
 @Injectable({ providedIn: 'root' })
 export class SettingsService {
-  private readonly baseUrl = '/api/settings';
+  private readonly baseUrl = `${environment.apiUrl}/settings`;
 
   constructor(private http: HttpClient) {}
 

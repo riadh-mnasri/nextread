@@ -1,11 +1,12 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { environment } from '../../environments/environment';
 import { Book, Category, Status } from '../models/book.model';
 
 @Injectable({ providedIn: 'root' })
 export class BookService {
-  private readonly baseUrl = '/api/books';
+  private readonly baseUrl = `${environment.apiUrl}/books`;
 
   constructor(private http: HttpClient) {}
 
