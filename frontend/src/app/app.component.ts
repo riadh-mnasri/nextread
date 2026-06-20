@@ -11,4 +11,5 @@ import { ToastComponent } from './shared/toast.component';
 })
 export class AppComponent {
   title = 'NextRead';
+  readonly currentYear = new Date().getFullYear();
 }
