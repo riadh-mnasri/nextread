@@ -43,6 +43,32 @@
         <label>Notes</label>
         <textarea name="notes" rows="2" [(ngModel)]="draft.notes"></textarea>
       </div>
+
+      <div class="field">
+        <label>Couverture (URL d'image, optionnel)</label>
+        <div class="cover-url-field">
+          <input
+            type="text"
+            name="coverUrl"
+            placeholder="https://..."
+            [(ngModel)]="draft.coverUrl"
+            (ngModelChange)="onCoverUrlChange()"
+          />
+          <img
+            *ngIf="draft.coverUrl && !previewFailed"
+            class="cover-url-preview"
+            [src]="draft.coverUrl"
+            alt="Aperçu de la couverture"
+            (error)="onPreviewError()"
+          />
+          <div class="cover-url-preview cover-url-preview--broken" *ngIf="draft.coverUrl && previewFailed">
+            <i class="bi bi-image-fill"></i>
+          </div>
+        </div>
+        <p class="field-hint" *ngIf="!draft.coverUrl">
+          Laisse vide pour garder la recherche automatique ou le dégradé coloré.
+        </p>
+      </div>
     </form>
 
     <div class="modal-actions">

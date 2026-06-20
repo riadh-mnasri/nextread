@@ -42,7 +42,9 @@ public class BookService {
 
     public Book create(Book book) {
         book.setId(null);
-        coverService.findCoverUrl(book.getTitle(), book.getAuthor()).ifPresent(book::setCoverUrl);
+        if (book.getCoverUrl() == null || book.getCoverUrl().isBlank()) {
+            coverService.findCoverUrl(book.getTitle(), book.getAuthor()).ifPresent(book::setCoverUrl);
+        }
         return bookRepository.save(book);
     }
 
@@ -54,6 +56,7 @@ public class BookService {
         existing.setPriority(update.getPriority());
         existing.setNotes(update.getNotes());
         existing.setRating(update.getRating());
+        existing.setCoverUrl(update.getCoverUrl());
         return bookRepository.save(existing);
     }
 

@@ -25,12 +25,14 @@ export class BookFormComponent implements OnChanges {
   @Output() cancelled = new EventEmitter<void>();
 
   draft: Book = { ...EMPTY_BOOK };
+  previewFailed = false;
   readonly categories = Object.keys(CATEGORY_LABELS) as Category[];
   readonly categoryLabels = CATEGORY_LABELS;
   readonly categoryTheme = CATEGORY_THEME;
 
   ngOnChanges(): void {
     this.draft = this.book ? { ...this.book } : { ...EMPTY_BOOK };
+    this.previewFailed = false;
   }
 
   selectCategory(category: Category): void {
@@ -39,6 +41,14 @@ export class BookFormComponent implements OnChanges {
 
   setPriority(priority: number): void {
     this.draft.priority = priority;
+  }
+
+  onPreviewError(): void {
+    this.previewFailed = true;
+  }
+
+  onCoverUrlChange(): void {
+    this.previewFailed = false;
   }
 
   submit(): void {

@@ -19,7 +19,13 @@ export class BookCoverComponent {
   @Output() remove = new EventEmitter<void>();
   @Output() refreshCover = new EventEmitter<void>();
 
+  imageFailed = false;
+
   readonly categoryLabels = CATEGORY_LABELS;
   readonly statusLabels = STATUS_LABELS;
   readonly categoryTheme = CATEGORY_THEME;
+
+  onImageError(): void {
+    this.imageFailed = true;
+  }
 }
