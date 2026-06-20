@@ -9,18 +9,20 @@ import org.springframework.web.util.UriComponentsBuilder;
 
 import java.net.URI;
 import java.util.Optional;
+import java.util.regex.Pattern;
 
 @Service
 public class CoverService {
 
     private static final Logger log = LoggerFactory.getLogger(CoverService.class);
+    private static final Pattern EDITION_SUFFIX = Pattern.compile("\\s*[\\(\\[]\\s*\\d+\\s*(?:e|ère|ème)?\\s*éd(?:ition)?\\.?[^)\\]]*[\\)\\]]", Pattern.CASE_INSENSITIVE);
 
     private final RestClient restClient = RestClient.create();
 
     public Optional<String> findCoverUrl(String title, String author) {
         UriComponentsBuilder builder = UriComponentsBuilder
                 .fromUriString("https://openlibrary.org/search.json")
-                .queryParam("title", title)
+                .queryParam("title", cleanTitle(title))
                 .queryParam("limit", 1)
                 .queryParam("fields", "cover_i");
 
@@ -46,5 +48,9 @@ public class CoverService {
             log.warn("Échec de la récupération de couverture pour '{}': {}", title, e.getMessage());
             return Optional.empty();
         }
+    }
+
+    private String cleanTitle(String title) {
+        return EDITION_SUFFIX.matcher(title).replaceAll("").trim();
     }
 }
