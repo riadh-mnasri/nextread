@@ -10,9 +10,17 @@ Une application locale, colorée et ludique pour suivre les livres lus / à lire
 
 ---
 
+## 🌐 Démo en ligne
+
+| Service | URL |
+|---|---|
+| Frontend (Vercel) | [nextread-riadh-mnasris-projects.vercel.app](https://nextread-riadh-mnasris-projects.vercel.app) |
+| Backend (Railway) | API Spring Boot déployée sur Railway |
+
 ## ✨ Fonctionnalités
 
 - **Bibliothèque visuelle** - chaque livre est une couverture colorée par catégorie, organisée en grille
+- **Couvertures automatiques** - récupérées via Open Library à l'ajout du livre, avec saisie manuelle d'URL en complément si l'auto-fetch ne trouve rien
 - **Suivi de statut** - à lire → en cours → lu, en un clic
 - **Focus de lecture** - choisis ta catégorie du moment, l'appli adapte ses recommandations
 - **Prochain livre à lire** - calculé automatiquement (focus + priorité), mis en avant sur le tableau de bord
@@ -62,13 +70,13 @@ nextread/
 
 ## 🗺️ Pistes d'évolution
 
-- Scan ISBN / récupération automatique des couvertures
+- Scan ISBN pour ajouter un livre directement depuis sa couverture papier
 - Statistiques de lecture avancées (rythme, séries, pages)
 - Recommandations basées sur l'historique de lecture
 
 ## 💾 Données
 
-Les données sont stockées **localement uniquement** dans un fichier H2 (`~/nextread-data/nextread.mv.db`). Elles persistent entre les redémarrages, sans dépendance à un serveur de base de données externe.
+En local, les données sont stockées dans un fichier H2 (`~/nextread-data/nextread.mv.db`) qui persiste entre les redémarrages, sans dépendance à un serveur de base de données externe. En production, le backend tourne sur Railway avec sa propre persistance.
 
 ---
 
