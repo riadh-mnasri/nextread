@@ -6,6 +6,11 @@ backend/target/
 *.mv.db
 *.trace.db
 
+# Variables d'environnement — ne jamais commiter
+.env
+.env.*
+*.env
+
 # macOS
 .DS_Store
 
@@ -13,3 +18,12 @@ backend/target/
 .idea/
 *.iml
 .vscode/
+
+# Next.js
+.next/
+out/
+
+# Clés et certificats
+*.pem
+*.key
+*.p12
